@@ -1,0 +1,82 @@
+body {
+    padding: 0px;
+}
+.navbar-light .navbar-text{
+    color:#343535;
+}
+.nav-link{
+    color:#343535;
+}
+.space{
+    display:block;
+}
+.product{
+    display:flex;
+    margin-top: 2%;
+    border:ridge;
+    padding:1%;
+}
+.product_grid{
+    padding:1.5%;
+}
+.product_details{
+    margin-left:1%;
+}
+#title{
+    font-size:large;
+
+}
+.product_body{
+    padding:2%;
+    display: flex;
+    border:ridge;
+}
+#product_body2{
+    margin-left: 2%;
+    padding: 1%;
+    border-left: ridge;
+}
+
+.comment_section{
+    padding:2%;
+}
+#img_button{
+    display: flex;
+}
+#close_auction{
+    margin-left: 45%;
+}
+.comment_section{
+    background-color:#f2eff0;
+}
+#comment{
+    margin-bottom:2%;
+}
+.spacer{
+    height:30px;
+    background-color:#f2eff0;
+}
+.the_comment{
+    padding:2%;
+    border:ridge;
+
+}
+#submit_button2{
+    background-color:#f2eff0;
+    border: ridge;
+    color:gray;
+    border-radius: 4px;
+
+}
+#id_title, #id_starting_bid, #id_url, #select {
+    border:ridge;
+    width:60%;
+    margin-bottom:1%;
+    height:40px;
+
+}
+#id_description{
+    border:ridge;
+    width:60%;
+    margin-bottom:1.5%;
+}

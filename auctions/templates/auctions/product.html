@@ -1,0 +1,88 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+{{message}}
+
+<div class="product_body">
+    <div id="product_img">
+<p><img src="{{product.url}}" alt= "{{product.url}}" height="400" width="400"></p>
+<div id="img_button">
+<div>
+{% if not watchlist %}
+<form action = "{% url 'watchlist' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="node" value="{{product.id}}">
+    <p><input class="btn btn-outline-secondary" type= "submit" value="Add to watchlist"></p>
+</form>
+{% endif %}
+
+{% if watchlist %}
+<form action="{% url 'watchlist' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="remove" value="{{product.id}}">
+    <p><input class="btn btn-outline-secondary" type= "submit" value="Delete from watchlist"></p>
+</form>
+{% endif %}
+</div>
+
+<div>
+{% if close %}
+<form action="{% url 'active_listing' product.id %}" method="POST">
+{% csrf_token %}
+<input type="hidden" name="close" value="{{product.id}}">
+<p><input type= "submit" id ="close_auction"class="btn btn-outline-secondary" value="Close the auction"></p>
+</form>
+{% endif %}
+</div>
+
+</div>
+</div>
+<div id="product_body2">
+<h5>{{product.title}}</h5>
+
+<p class="font-weight-light">Starting Bid - <b>Rs.{{bids.starting_bid}}</b></p>
+<p class="font-weight-light">Current Bid -  <b>Rs.{{bids.current_bid}}</b></p>
+<p class="font-weight-light">Final Bid -    <b>Rs.{{bids.final_bid}}</b></p>
+<p class="font-weight-light">{{product.description}}</p>
+
+
+{% if bidder %} 
+    {{bidder}}
+{% endif %}
+
+{%if not stop %}
+
+<form action="{% url 'active_listing' product.id %}" method="POST">
+    {% csrf_token %}
+<input type="number" name="bid" placeholder="Bid" autocomplete='off'>
+<input class = "submit_button1" type="submit">
+</form>
+
+{% endif %}
+
+
+
+
+
+
+</div>
+</div>
+
+<div class="comment_section">
+    <div id="comment">
+<form action="{% url 'active_listing' product.id %}" method="POST">
+    {% csrf_token %}
+    <input type = "text" name="comment" placeholder="Comment" autocomplete="off">
+    <input id = "submit_button2" type="submit"> 
+</form>
+</div>
+
+{% for x in comment %}
+<p class="the_comment"><b>{{x.user}}</b> - <b class="font-weight-light">{{x.comment}}</b></p>
+{% endfor %}
+</div>
+{% endblock %}
+
+
+
+

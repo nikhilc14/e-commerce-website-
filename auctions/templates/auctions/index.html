@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="product_grid">
+    {% for listing in active_listing %}
+    <div class="product">
+        <div>
+            <img src="{{listing.url}}" alt= "{{listing.url}}" height="250" width="250"></div>
+        <div class="product_details">
+        <p id="title"><b><a style="color:black"href="{% url 'active_listing' listing.id %}">{{listing.title}}</a></b></p>
+        
+        <p><b>Price - {{listing.bid}}</b></p>
+        <p class="font-weight-light">{{listing.description}}</p>
+         {% if listing.state == False %}
+         <b>Auction open</b>
+         {% else %}
+         <b>Auction closed</b>
+         {% endif %}
+         </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+    

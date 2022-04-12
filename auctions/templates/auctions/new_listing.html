@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %} 
+
+{% block body %}
+{{message}}
+<div class="product_grid">
+    <h4>New listing</h4>
+<form action="{% url 'new_listing' %}", method = "post" autocomplete="off">
+    {% csrf_token %}
+    {%load crispy_forms_tags %}
+    {{listing_form|crispy }}
+    <select id="select" name="selected">
+        {% for c in category %}
+        <option>{{c}}</option>
+        {% endfor %}
+    </select>
+    <p><input id="id_submit" class="btn btn-outline-secondary"type="submit"></p>
+</form>
+</div>
+
+
+{% endblock %}

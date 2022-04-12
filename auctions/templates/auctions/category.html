@@ -1,0 +1,46 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+<div class="product_grid">
+<h4>Categories </h4>
+{{message}}
+<form action = "{% url 'category' %}" method = "POST">
+    {% csrf_token %}
+    <div class="form-group" style="border:ridge;padding:2%;">
+        <label >Add category (optional)</label>
+        <input type="text" name="category" class="form-control" placeholder="Category" autocomplete="off">
+        <input style="margin-top:1%;margin-bottom:1%;" class="btn btn-secondary"type="submit">
+    </form>
+
+    <form action = "{% url 'category' %}" method = "POST">
+        {% csrf_token %}
+        <select name="specific" style="height:50px;margin-bottom:1%;width:200px">
+            {% for wish in category %}
+            <option value="{{wish}}">{{wish}}</option>
+            {% endfor %}
+        </select>
+        <p><input class="btn btn-secondary" type="submit"></p>
+    </form>
+    {% for listing in active_listing %}
+    <div class="product">
+        <div>
+            <img src="{{listing.url}}" alt= "{{listing.url}}" height="250" width="250"></div>
+        <div class="product_details">
+        <p id="title"><b><a style="color:black"href="{% url 'active_listing' listing.id %}">{{listing.title}}</a></b></p>
+        
+        <p><b>Price - {{listing.bid}}</b></p>
+        <p class="font-weight-light">{{listing.description}}</p>
+         {% if listing.state == False %}
+         <b>Auction open</b>
+         {% else %}
+         <b>Auction closed</b>
+         {% endif %}
+         </div>
+    </div>
+    {% endfor %}
+      </div>
+
+</div>
+</form>
+
+{% endblock %}
